@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { End, Start, images } from "../utils/data";
 import { Button } from "antd";
+import BtnGroup from "./BtnGroup";
 
 function Sidebar({ onGenerateGradient }) {
   const [selectedColor, setSelectedColor] = useState({
@@ -8,6 +9,7 @@ function Sidebar({ onGenerateGradient }) {
     end: null,
   });
   const [selectedImage, setSelectedImage] = useState(null);
+  const [gradientType, setGradientType] = useState("linear");
 
   const handleColorClick = (color, type) => {
     setSelectedColor({ ...selectedColor, [type]: color });
@@ -24,7 +26,12 @@ function Sidebar({ onGenerateGradient }) {
       start: selectedColor.start,
       end: selectedColor.end,
       image: selectedImage,
+      gradientType: gradientType,
     });
+  };
+
+  const handleGradientType = (type) => {
+    setGradientType(type);
   };
 
   const data = [
@@ -47,7 +54,7 @@ function Sidebar({ onGenerateGradient }) {
       {data.map((item) => (
         <div key={item.id}>
           <p>{item.heading}</p>
-          <div className="w-3/4 md:w-11/12 flex flex-wrap gap-2">
+          <div className="w-4/5 md:w-11/12 flex flex-wrap gap-2">
             {item.position.map((color) => (
               <div
                 key={color}
@@ -65,6 +72,7 @@ function Sidebar({ onGenerateGradient }) {
           </div>
         </div>
       ))}
+      <BtnGroup onChange={handleGradientType} />
       <div className="flex flex-col gap-2">
         <p>Background Images</p>
         <div className="flex justify-between flex-wrap gap-2">

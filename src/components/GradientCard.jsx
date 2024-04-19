@@ -4,11 +4,10 @@ import { Snippet } from "@nextui-org/react";
 import { colorMap } from "../utils/data";
 
 function GradientCard({ gradientColor }) {
-  const { start, end, image } = gradientColor;
+  const { start, end, image, gradientType } = gradientColor;
 
   const startColor = colorMap[start] || "gray-300";
   const endColor = colorMap[end] || "gray-300";
-  const currentYear = new Date().getFullYear();
 
   return (
     <div className="box-border flex flex-col p-4 text-lg md:text-2xl font-semibold gap-2">
@@ -17,6 +16,10 @@ function GradientCard({ gradientColor }) {
         style={{
           backgroundImage: image
             ? `url(${image})`
+            : gradientType === "linear"
+            ? `linear-gradient(to right, ${start}, ${end})`
+            : gradientType === "radial"
+            ? `radial-gradient(circle, ${start}, ${end})`
             : `linear-gradient(to right, ${start}, ${end})`,
         }}
       >
@@ -28,13 +31,21 @@ function GradientCard({ gradientColor }) {
           <p>CSS Code:</p>
           <div className="overflow-auto">
             <Snippet color="secondary">
-              {`linear-gradient(to right, ${start}, ${end});`}
+              {gradientType === "linear"
+                ? `linear-gradient(to right, ${start}, ${end});`
+                : gradientType === "radial"
+                ? `radial-gradient(circle, ${start}, ${end});`
+                : `linear-gradient(to right, ${start}, ${end});`}
             </Snippet>
           </div>
           <p>Tailwind Code:</p>
           <div className="overflow-auto">
             <Snippet color="warning">
-              {`bg-gradient-to-r from-${startColor} to-${endColor}`}
+              {gradientType === "linear"
+                ? `bg-gradient-to-r from-${startColor} to-${endColor}`
+                : gradientType === "radial"
+                ? `bg-radial-gradient from-${startColor} to-${endColor}`
+                : `bg-gradient-to-r from-${startColor} to-${endColor}`}
             </Snippet>
           </div>
         </>
@@ -45,8 +56,6 @@ function GradientCard({ gradientColor }) {
           </Snippet>
         </div>
       )}
-
-      <span className="text-center text-sm text-neutral-400">&copy; {currentYear} ColorGrad. All rights reserved </span>
     </div>
   );
 }
