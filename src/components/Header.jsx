@@ -6,7 +6,7 @@ import { links } from "../utils/data";
 function Header() {
   return (
     <nav className="border-b-[1px] border-neutral-300 flex justify-between items-center p-3 px-5 md:px-12 sticky top-0 z-[10]">
-      <header className="text-xl font-bold">
+      <header className="text-blue-900 text-xl font-extrabold tracking-widest">
         <p className="hidden md:flex">COLORGRAD</p>
         <p className="flex md:hidden">CG</p>
       </header>

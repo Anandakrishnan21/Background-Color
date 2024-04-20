@@ -12,7 +12,7 @@ function GradientCard({ gradientColor }) {
   return (
     <div className="box-border flex flex-col p-4 text-lg md:text-2xl font-semibold gap-2">
       <Card
-        className="relative h-96 border-1 border-neutral-300"
+        className="relative h-72 md:h-96 border-1 border-neutral-300"
         style={{
           backgroundImage: image
             ? `url(${image})`
