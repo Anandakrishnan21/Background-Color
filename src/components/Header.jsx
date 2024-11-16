@@ -19,9 +19,15 @@ function Header() {
         </Button>
         <ul className="flex gap-2">
           {links.map((link) => (
-            <Link key={link.id} href={link.href} color="foreground">
-              <link.icon size={24} className="text-neutral-800" />
-            </Link>
+            <li key={link.id}>
+              <Link href={link.href} color="foreground">
+                <link.icon
+                  size={24}
+                  className="text-neutral-800"
+                  aria-label="social-media-links"
+                />
+              </Link>
+            </li>
           ))}
         </ul>
       </div>

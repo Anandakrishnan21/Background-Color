@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Card } from "antd";
 import { Snippet } from "@nextui-org/react";
 import { colorMap } from "../utils/data";
 
-function GradientCard({ gradientColor }) {
+function GradientCard({ gradientColor, type }) {
   const { start, end, image, gradientType } = gradientColor;
+  const reference = useRef(null);
 
   const startColor = colorMap[start] || "gray-300";
   const endColor = colorMap[end] || "gray-300";
 
+  useEffect(() => {
+    if (type === "advanced" && reference.current) {
+      reference.current.style.setProperty("--color-a", start);
+      reference.current.style.setProperty("--color-b", end);
+    }
+  }, [start, end, type]);
+
   return (
     <div className="box-border flex flex-col p-4 text-lg md:text-2xl font-semibold gap-2">
       <Card
-        className="relative h-72 md:h-96 border-1 border-neutral-300"
+        ref={reference}
+        className={`relative overflow-hidden h-72 md:h-96 border-1 border-neutral-300 ${
+          type === "advanced"
+            ? "bg-gradient-to-br from-[--color-a] via-[--color-b] duration-500 ease-in [transition-property:_--color-a,_--color-b] before:absolute before:left-[20%] before:top-[10%] before:h-[50%] before:w-[70%] before:origin-[60%] before:animate-blob before:rounded-3xl before:bg-gradient-to-br before:from-[--color-a] before:to-[--color-b] before:blur-[50px] before:brightness-125 after:absolute after:left-[40%] after:top-[30%] after:h-[80%] after:w-[70%] after:origin-[60%] after:animate-blob-reverse after:rounded-3xl after:bg-gradient-to-br after:from-[--color-a] after:to-[--color-b] after:blur-[50px] after:brightness-125 animate-gradient-moving bg-[200%]"
+            : ""
+        }`}
         style={{
           backgroundImage: image
             ? `url(${image})`

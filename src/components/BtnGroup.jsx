@@ -9,8 +9,8 @@ function BtnGroup({ onChange }) {
   return (
     <Flex vertical gap="middle">
       <Radio.Group defaultValue="linear" onChange={handleChange}>
-        <Radio.Button value="linear">Linear</Radio.Button>
-        <Radio.Button value="radial">Radial</Radio.Button>
+        <Radio.Button value="linear" id="linear">Linear</Radio.Button>
+        <Radio.Button value="radial" id="radial">Radial</Radio.Button>
       </Radio.Group>
     </Flex>
   );

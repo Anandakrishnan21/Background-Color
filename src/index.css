@@ -3,5 +3,18 @@
 @tailwind utilities;
 
 .aside {
-    @apply w-full md:w-80 flex flex-col md:border-r-neutral-300 border-[1px] font-semibold p-4 md:sticky top-0 gap-4
+  @apply w-full md:w-80 flex flex-col md:border-r-neutral-300 border-[1px] font-semibold p-4 md:sticky top-0 gap-4;
+}
+
+@layer base {
+  @property --color-a {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: transparent;
+  }
+  @property --color-b {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: transparent;
+  }
 }

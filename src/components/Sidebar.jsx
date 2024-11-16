@@ -85,6 +85,7 @@ function Sidebar({ onGenerateGradient }) {
               onClick={() => handleImageClick(imageUrl)}
             >
               <img
+                loading="lazy"
                 src={imageUrl}
                 alt={imageUrl}
                 className="w-28 h-10 rounded-md cursor-pointer"
